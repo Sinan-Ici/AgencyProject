@@ -10,8 +10,7 @@ namespace DataAccess.Context
 {
     public class AgencyProjectContext:DbContext
     {
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Agency> Agencies { get; set; }
+        public DbSet<User> Users { get; set; }
+        
     }
 }
