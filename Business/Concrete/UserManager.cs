@@ -46,7 +46,7 @@ namespace Business.Concrete
 
         }
 
-        public virtual User GetByName(string name)
+        public User GetByName(string name)
         {
             return db.Set<User>().SingleOrDefault(x => x.UserName == name);
         }

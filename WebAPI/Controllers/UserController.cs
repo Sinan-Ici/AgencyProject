@@ -13,13 +13,15 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
    
-    public class AdminController : Controller
+    public class UserController : Controller
     {
         IUserService _userService;
-        public AdminController(IUserService userService)
+        public UserController(IUserService userService)
         {
-            _userService = userService;
+            _userService = userService; 
         }
+
+        //[Authorize(Roles = "admin")]
         [HttpPost("addagency")]
         public IActionResult AddAgency(User user)
         {
@@ -28,24 +30,33 @@ namespace WebAPI.Controllers
             return Ok(user);
             
         }
+
+
+        [Authorize(Roles = "agency,admin")]
         [HttpPost("addcustomer")]
         public IActionResult AddCustomer(User user)
         {
             _userService.AddCustomer(user);
             return Ok(user);
         }
+
+        [Authorize(Roles = "admin")]
         [HttpPost("deleteagency")]
         public IActionResult DeleteAgency(User user)
         {
             _userService.DeleteAgency(user);
             return Ok(user);
         }
+
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "agency")]
         [HttpPost("deletecustomer")]
         public IActionResult DeleteCustomer(User user)
         {
             _userService.DeleteCustomer(user);
             return Ok(user);
         }
+        [AllowAnonymous]
         [HttpGet("getusers")]
         public IActionResult GetUsers()
         {
