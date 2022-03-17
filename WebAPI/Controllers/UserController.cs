@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
             _userService = userService; 
         }
 
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [HttpPost("addagency")]
         public IActionResult AddAgency(User user)
         {
